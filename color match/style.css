@@ -1,0 +1,72 @@
+body {
+    background-color: rgb(110, 68, 19);
+}
+
+body h1 {
+    font-size: 300%;
+    text-align: center;
+    color: white;
+}
+
+.innerContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.innerContainer-item  {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.outerContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.display {
+    background-color: white;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25dvh;
+    width: 25dvw;
+}
+
+.displayText {
+    text-align: center;
+    font-size: 500%;
+    font-weight: bolder;
+}
+
+.bottomBox {
+    background-color: white;
+    opacity: 75%;
+    font-size: 200%;
+    padding: 25px 40px;
+    margin-top: 25px;
+}
+
+.arrowKeyLeft {
+    background-color: white;
+    opacity: 75%;
+    padding: 30px;
+    font-weight: 600;
+    margin-top: 100px;
+    margin-right: 2px;
+}
+
+.arrowKeyRight {
+    background-color: white;
+    opacity: 75%;
+    padding: 30px;
+    font-weight: 600;
+    margin-top: 100px;
+    margin-left: 2px;
+}
