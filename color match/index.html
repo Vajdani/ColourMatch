@@ -7,19 +7,24 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="statDisplay">
+        <button onclick="Pause()">⏸︎</button>
+        <p id="time"></p>
+        <p id="score"></p>
+        <p id="mul"></p>
+    </div>
     <h1>Does the meaning match the text colour?</h1>
     <div class="outerContainer">
         <div class="innerContainer">
-            <div class="innerContainer-item" style="margin-right: 25px;">
+            <div class="innerContainer-item-left">
                 <div class="display">
                     <div class="displayText" id="colour1"></div>
                 </div>
                 <div class="bottomBox">
                     meaning
                 </div>
-                
             </div>
-            <div class="innerContainer-item" style="margin-left: 25px;">
+            <div class="innerContainer-item-right">
                 <div class="display">
                     <div class="displayText" id="colour2"></div>
                 </div>
@@ -28,13 +33,13 @@
                 </div>  
             </div>
         </div>
-        <div class="innerContainer">
-            <div class="arrowKeyLeft" id="arrowLeft">
+        <div class="innerContainer" style="flex-direction: row">
+            <button class="arrowKeyLeft" id="arrowLeft" onclick="Guess(false, 'arrowLeft')">
                 NO ⟽
-            </div>
-            <div class="arrowKeyRight" id="arrowRight">
+            </button>
+            <button class="arrowKeyRight" id="arrowRight" onclick="Guess(true, 'arrowRight')">
                 ⟾ YES
-            </div>
+            </button>
         </div>
     </div>
     

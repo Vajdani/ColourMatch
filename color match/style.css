@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(110, 68, 19);
+    background-image: url("background.jpg");
 }
 
 body h1 {
@@ -15,11 +15,20 @@ body h1 {
     align-items: center;
 }
 
-.innerContainer-item  {
+.innerContainer-item-left {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-right: 25px;
+}
+
+.innerContainer-item-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 25px;
 }
 
 .outerContainer {
@@ -27,6 +36,7 @@ body h1 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: calc(50dvh - 252px - 55px);
 }
 
 .display {
@@ -35,8 +45,9 @@ body h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 25dvh;
-    width: 25dvw;
+    height: 200px;
+    width: 300px;
+    box-shadow: 0px 5px 5px black;
 }
 
 .displayText {
@@ -50,7 +61,23 @@ body h1 {
     opacity: 75%;
     font-size: 200%;
     padding: 25px 40px;
-    margin-top: 25px;
+    margin-top: 50px;
+
+    position: relative;
+}
+
+.bottomBox:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border: 30px solid transparent;
+    border-bottom-color: #ffffff;
+    border-top: 0;
+    margin-left: -30px;
+    margin-top: -30px;
 }
 
 .arrowKeyLeft {
@@ -60,6 +87,13 @@ body h1 {
     font-weight: 600;
     margin-top: 100px;
     margin-right: 2px;
+    border: 0;
+}
+.arrowKeyLeft:hover {
+    opacity: 85%;
+}
+.arrowKeyLeft:active {
+    opacity: 100%;
 }
 
 .arrowKeyRight {
@@ -69,4 +103,70 @@ body h1 {
     font-weight: 600;
     margin-top: 100px;
     margin-left: 2px;
+    border: 0;
+}
+.arrowKeyRight:hover {
+    opacity: 85%;
+}
+.arrowKeyRight:active {
+    opacity: 100%;
+}
+
+.statDisplay {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px
+}
+.statDisplay p {
+    display: inline;
+    background-color: white;
+    opacity: 75%;
+    padding: 10px;
+    margin: 0;
+}
+
+@media only screen and (max-width: 678px) {
+    .innerContainer {
+        flex-direction: column;
+    }
+
+    .innerContainer-item-left {
+        margin-right: 0;
+    }
+    
+    .innerContainer-item-right {
+        margin-top: 10px;
+        margin-left: 0;
+    }
+
+    .arrowKeyLeft {
+        margin-top: 20px;
+    }
+    
+    .arrowKeyRight {
+        margin-top: 20px;
+    }
+
+    .display {
+        height: 150px;
+        width: 200px;
+    }
+
+    .displayText {
+        font-size: 300%;
+    }
+
+    .bottomBox {
+        font-size: 150%;
+        padding: 12px 20px;
+        margin-top: 40px;
+    }
+
+    body h1 {
+        font-size: 150%;
+        margin: 0;
+    }
 }

@@ -1,8 +1,22 @@
 const colour1 = document.getElementById("colour1")
 const colour2 = document.getElementById("colour2")
+const time_div = document.getElementById("time")
+const score_div = document.getElementById("score")
+const mul_div = document.getElementById("mul")
 
 var correctColour
-var guessInterval
+var locked = false
+var paused = false
+
+var score = 0
+var time = 0
+var maxTime = 45
+var timeInterval
+var multiplier = 1
+var multiplierProgression = 0
+var maxMultiplierProgression = 4
+var maxMultiplier = 10
+var scoreBaseAmount = 50
 
 var colourValues = [
     "rgb(255, 0, 0)",
@@ -59,27 +73,92 @@ function Select() {
     else {
         colour1.innerText = RandomName()
     }
+
+    UpdateTimeOutput()
+    score_div.innerText = "SCORE " + score
+
+    let mul_text = ""
+    if (multiplier < maxMultiplier) {
+        mul_text = "●".repeat(multiplierProgression) + "○".repeat(maxMultiplierProgression - multiplierProgression)
+    }
+    else {
+        mul_text = "MAX"
+    }
+
+    mul_div.innerText = mul_text + " x" + multiplier
 }
 
 function Guess(match, key) {
-    if (guessInterval != null) { return }
+    if (locked || paused) { return }
+    
+    Start()
 
     let correctGuess = (correctColour == nameToValue[colour1.innerText]) == match
     let element = document.getElementById(key)
     if (correctGuess) {
         element.style = "box-shadow: inset 5px 5px green, inset -5px -5px green"
+
+        score += scoreBaseAmount * multiplier
+
+        if (multiplier < maxMultiplier) {
+            multiplierProgression++
+            if (multiplierProgression >= maxMultiplierProgression) {
+                multiplier++
+                multiplierProgression = 0
+            }
+        }
     }
     else {
         element.style = "box-shadow: inset 5px 5px red, inset -5px -5px red"
+        multiplier = 1
+        multiplierProgression = 0
     }
     
-    guessInterval = setInterval(() => {
+    locked = true
+    setTimeout(() => {
         element.style = ""
         Select()
-
-        clearInterval(guessInterval)
-        guessInterval = null
+        locked = false
     }, 250);
+}
+
+function Start() {
+    if (timeInterval != null) { return }
+
+    time = maxTime
+    UpdateTimeOutput()
+    timeInterval = setInterval(() => {
+        if (paused) { return }
+
+        time--
+        UpdateTimeOutput()
+        if (time <= 0) {
+            clearInterval(timeInterval)
+            timeInterval = null
+
+            window.alert("Game over! Final score: " + score)
+
+            score = 0
+            multiplier = 1
+            multiplierProgression = 0
+
+            Select()
+        }
+    }, 1000);
+}
+
+function UpdateTimeOutput() {
+    if (paused) {
+        time_div.innerHTML = "<span style='text-decoration: line-through'>TIME " + time + "s</span> (PAUSED)"
+    }
+    else {
+        time_div.innerHTML = "TIME " + time + "s"
+    }
+}
+
+function Pause() {
+    paused = !paused
+    UpdateTimeOutput()
 }
 
 window.addEventListener("keydown", (e) => {
